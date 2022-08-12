@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo&family=Titillium+Web:wght@200&display=swap');
+
+
+* {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Titillium Web', sans-serif;
+  /* Regular 400, Bold 700   */
+  
+  line-height: 1.2;
+  font-size: 13px;
+  color: var(--line-color);
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
