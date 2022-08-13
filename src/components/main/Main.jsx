@@ -7,9 +7,9 @@ import "./Main.scss";
 const Main = () => {
   return (
     <div className='main'>
-        <Header></Header>
-        <SlideCard></SlideCard>
-        <Cards></Cards>
+      <Header></Header>
+      <SlideCard></SlideCard>
+      <Cards></Cards>
     </div>
   )
 }

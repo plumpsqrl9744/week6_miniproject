@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "./Cards.scss";
-// import {Card,CardTitle} from 'reactstrap';
+import { BsSuitHeartFill , BsSuitHeart} from "react-icons/bs";
 import Button from 'react-bootstrap/Button';
+import {Link} from "react-router-dom"
 import Card from 'react-bootstrap/Card';
 import logo from "../../logo/logo.png"
 
@@ -10,19 +11,34 @@ const Cards = ({thumbnail}) => {
     const toggleEv = () => {
         setModal(!modal)
     }
+    const [counts, setCounts] = useState([
+        1,
+        2,
+        3,
+        4,
+        5
+    ])
     return (
-        <div className='cards'>
-            <Card style={{ width: '240px',height:"400px"}}>
-                <Card.Img variant="top" src={logo} className="card-img"/>
-                <Card.Body>
+        <div className='cards' >
+        {counts.map((count,index)=>{
+            return(
+                <Link to={"/"} className='card-link' key={index}>
+                <Card style={{ minHeight:"500px"}} className="card-container">
                     <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-            </Card>
+                    <Card.Img variant="top" src={logo} className="card-img"/>
+                    <Card.Body>
+                        <div className='hearts'>
+                            <BsSuitHeartFill style={{fontSize:"25px" ,color:"red" ,marginTop:"-5px"}}></BsSuitHeartFill><div className='hearts-count'>25</div>
+                        </div>
+                        {/* <Button variant="primary">GO</Button> */}
+                        <Card.Text>
+                        {count}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                </Link>                
+                )
+            })}
         </div>
     )
 }

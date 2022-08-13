@@ -1,21 +1,23 @@
 import "./Header.scss";
 import logo from "../../logo/logo.png"
 import { useState } from "react";
+import Post from "../post/Post";
 
 const RightBar = () =>{
   const [menuBar,setMenuBar] = useState(false);
   const onClickEvent=()=>{
     setMenuBar(!menuBar);
   }
+
   return(
     <div className={"header-right"+ (menuBar ? " active" : "")}>
       <div className={"header-menu"+ (menuBar ? " menu-act" : " none-act")}>
         <ul>
-          <li onClick={onClickEvent}>
-            <a to={`/`}>Create Card</a>
+          <li className="" onClick={onClickEvent}>
+            <a href={`/post`}>Create Card</a>
           </li>
           <li onClick={onClickEvent}>
-            <a to={`/login`} className="logout">LogOut</a>
+            <a href={`/login`}>LogOut</a>
           </li>
         </ul>
       </div>

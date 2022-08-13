@@ -1,0 +1,30 @@
+.post{
+    background-color: #eee;
+    width: 100vw;
+    height: 100vh;
+}
+.post-form{
+    width: 700px;
+    height: 800px;
+    min-width: 700px;
+    min-height: 800px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 15px;
+    margin: 30px auto 0 auto;
+    .desc{
+        padding-top: 9px;
+        font-size: 23px;
+        font-weight: bold;
+        
+        display: flex;
+        justify-content: center;
+    }
+    .arrow-left{
+        text-decoration: none;
+        color: black;
+        margin: 9px 0 0 5px;
+        font-size: 29px;
+        float: left;
+    }
+}

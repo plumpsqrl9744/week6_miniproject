@@ -63,16 +63,20 @@
 ul{
     list-style:none;
     li{
+        margin-top: 10px;
         margin-right: 30px;
         display: inline-block;
         a{
             color: black;
             text-decoration: none;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 24px;
         }
-        .logout{
-            font-size: 23px;
+        div{
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 24px;
         }
     }
 }
