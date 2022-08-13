@@ -19,7 +19,7 @@ const Cards = ({thumbnail}) => {
         5
     ])
     return (
-        <div className='cards' >
+        <div className='cards'>
         {counts.map((count,index)=>{
             return(
                 <Link to={"/"} className='card-link' key={index}>
