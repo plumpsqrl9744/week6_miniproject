@@ -49,5 +49,5 @@ const StPostWriter = styled.div`
     margin-left : 10px;
 `
 const StPostText = styled.div`
-    margin : 10px;
+    margin : 11px;
 `
