@@ -5,14 +5,16 @@ import styled from 'styled-components';
 function DetailBox() {
     return (
         <StDetailBox>
-            <StPostWriter> 
-            <strong>jangwoo_Koo</strong>
-            </StPostWriter>
+            <StPostWriterBox> 
+            <StUserImg src = ' https://www.urbanbrush.net/web/wp-content/uploads/edd/2020/11/urbanbrush-20201104103659627968.jpg' /><strong>jangwoo_Koo</strong>
+            </StPostWriterBox>
+
             <StImgBox>
-            <StImg src = ' https://i.pinimg.com/474x/d9/25/bc/d925bc22fec48387535d0189f29a6b9d.jpg' />
+            <StImg src = ' https://i.pinimg.com/474x/d9/25/bc/d925bc22fec48387535d0189f29a6b9d.jpg' />   
             </StImgBox>
-            <StPostText>      
-            <strong>jangwoo_Koo</strong> : 괭이 귀여워!!!
+            
+            <StPostText>    
+            <strong>jangwoo_Koo</strong>&nbsp;&nbsp;괭이 귀여워!!!
             </StPostText>
         </StDetailBox>
     );
@@ -45,9 +47,22 @@ const StImgBox = styled.div`
     width : 578px;
     height : 400px;
 `
-const StPostWriter = styled.div`
+const StPostWriterBox = styled.div`
     margin-left : 10px;
+    border-bottom : 1px solid #D8D8D8;
+    padding-bottom : 20px;
 `
-const StPostText = styled.div`
+const StPostText = styled.span`
+    border-bottom : 1px solid #D8D8D8;
+    
     margin : 11px;
+    padding-top : 30px;
+    padding-bottom : 30px;
+`
+const StUserImg = styled.img`
+    width : 30px;
+    height : 30px;
+    border : 0.5px solid #E6E6E6k;
+    margin-right : 10px;
+
 `

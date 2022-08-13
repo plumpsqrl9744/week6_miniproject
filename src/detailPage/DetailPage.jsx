@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Header from '../components/header/Header';
-import CommentForm from '../components/CommentForm';
 import CommentList from '../components/CommentList';
 import DetailBox from '../components/DetailBox';
 import styled from 'styled-components';
@@ -12,9 +11,9 @@ function DetailPage() {
             <Header/>
         <StDetailPage>
             <DetailBox/>
-            <CommentForm/>
             <CommentList/>
         </StDetailPage>
+
         </div>
     );
 }
@@ -30,7 +29,7 @@ const StDetailPage = styled.div`
     
     width : 600px;
     max-width : 1200px;
-    border : 1px solid gray;
+    border : 1px solid #D8D8D8;
 
     padding : 10px;
     margin-top : 20px;
