@@ -1,6 +1,15 @@
 .main{
     height: auto;
-    // width: 100vw;
     background-color: #eee;
     overflow-y: hidden;
+}
+.paging{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.page-item{
+    margin-bottom: 20px;
+    margin-right: 0;
+    display: inline-block;
 }

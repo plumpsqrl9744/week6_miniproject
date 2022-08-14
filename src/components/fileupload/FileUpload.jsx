@@ -1,16 +1,37 @@
 import { useState } from "react"
 import "./FileUpload.scss";
 import Button from 'react-bootstrap/Button';
-
+import Form from 'react-bootstrap/Form';
 
 const FileUpload = () => {
-    const [posts, setPosts] = useState([
+    const [posts, setPosts] = useState(
         {
-          image : "가",
-          title : "나",
-          content:"다"
+            titles : "",
+            contents:""
         }
-      ]);
+    );
+    const onChange = (e) => {
+        e.preventDefault();
+        // setTitle(e.target.value)
+        setPosts({...posts,
+            titles:e.target.value
+        })
+    }
+    const onChanges = (e) => {
+        e.preventDefault();
+        // setContent(e.target.value)
+        setPosts({...posts,
+            contents:e.target.value
+        })
+    }
+    const handlePost = (e) => {
+        e.preventDefault();
+        // setPosts({...posts,
+        //     titles:title,
+        //     contents:content
+        // })
+        console.log(posts)
+    }
     const [selectedImages, setSelectedImages] = useState([]);
     const [imgSelect , setImgSelect] = useState(false)
     const onSelectFile = (event) => {
@@ -32,6 +53,7 @@ const FileUpload = () => {
         URL.revokeObjectURL(image);
         setImgSelect((prev) => !prev)
     }
+    
     const ImageUpload = () => {
     return(
         <label className="img-label">
@@ -65,6 +87,17 @@ const FileUpload = () => {
     return (
         <div className='fileupload'>
             <ImageUpload></ImageUpload>
+            <Form className="upload-container" >
+                <Form.Group className="input-box">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control name="title" placeholder="Title" value={posts.titles} onChange={onChange}/>
+                </Form.Group>
+                <Form.Group className="input-box">
+                    <Form.Label>Example textarea</Form.Label>
+                    <Form.Control as="textarea" name="content" rows={3} value={posts.contents} placeholder ="Content" onChange={onChanges}/>
+                </Form.Group>
+                <Button onClick={handlePost}>Submit</Button>
+            </Form>
         </div>
     )
 }

@@ -13,10 +13,10 @@ const RightBar = () =>{
     <div className={"header-right"+ (menuBar ? " active" : "")}>
       <div className={"header-menu"+ (menuBar ? " menu-act" : " none-act")}>
         <ul>
-          <li className="" onClick={onClickEvent}>
+          <li className="items" onClick={onClickEvent}>
             <a href={`/post`}>Create Card</a>
           </li>
-          <li onClick={onClickEvent}>
+          <li className="items" onClick={onClickEvent}>
             <a href={`/login`}>LogOut</a>
           </li>
         </ul>
@@ -36,6 +36,7 @@ const Header = () =>{
         <div className="header-left">
           <a href={`/`}><img className="logo" src={logo}></img></a>
         </div>
+        <div className="title">Your Pet</div>
         <RightBar></RightBar>
       </div>
   );
