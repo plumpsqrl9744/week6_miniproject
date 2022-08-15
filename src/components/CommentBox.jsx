@@ -14,7 +14,7 @@ function CommentBox({ comment }) {
         <div>
         <StCommentBox>
         <CommentWriter>구장우</CommentWriter>
-        <CommentText>귀여워!!!!</CommentText>
+        <CommentText>{ comment.message }</CommentText>
         <div>
         <button>edit</button>
         <button
