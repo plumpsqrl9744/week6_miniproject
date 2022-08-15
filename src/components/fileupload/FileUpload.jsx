@@ -2,8 +2,10 @@ import { useState } from "react"
 import "./FileUpload.scss";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {useNavigate } from "react-router-dom"
 
 const FileUpload = () => {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState(
         {
             titles : "",
@@ -30,6 +32,10 @@ const FileUpload = () => {
         //     titles:title,
         //     contents:content
         // })
+        if (posts.contents==="" || posts.titles===""){
+            alert("내용과 제목을 입력해주세요.")
+        }
+        navigate("/")
         console.log(posts)
     }
     const [selectedImages, setSelectedImages] = useState([]);

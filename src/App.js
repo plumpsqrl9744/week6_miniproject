@@ -1,7 +1,7 @@
 import './App.css';
 import Router from "./components/shared/Router";
 
-function App() {
+const App = () => {
   return(
     <div className="app">
       <Router></Router>

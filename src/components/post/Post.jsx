@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../header/Header";
 import {Link} from "react-router-dom"
 import "./Post.scss";
-import Form from 'react-bootstrap/Form';
-import Button from "react-bootstrap/esm/Button";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import FileUpload from "../fileupload/FileUpload" 
 
-
 const Post = () => {
-  
-  
   return (
     <div className="post">
       <Header></Header>
