@@ -9,6 +9,17 @@ import axios from 'axios';
 const pageNums = [1,2,3,4,5,6]
 
 const Paging = () => {
+  const [hello, setHello] = useState('')
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/v1/todos', {
+    })
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }, []);
   return (
     <div className='paging'>
       <Pagination>
@@ -21,16 +32,7 @@ const Paging = () => {
     </div>
   );
 }
-const Main = () => {
-  const [hello, setHello] = useState('')
-  useEffect(() => {
-      const response = axios.get("https://run.mocky.io/v3/5b8dfb40-207d-4979-9acf-8c71943aed6a")
-      console.log(response.data)
-      return response.data
-      // .then(response => setHello(response.data))
-      // console.log(hello)
-      // .catch(error => console.log(error))
-  }, []);
+const Main = () => { // 카드 페이징 get
   return (
     <div className='main'>
       <Header></Header>

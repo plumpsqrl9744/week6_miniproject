@@ -11,7 +11,7 @@ const SlideCard = () => {
         slidingAnimation='left_to_right'
         orientation='horizontal'
         initialSlide={1}
-        onBeforeChange={(previousSlide,nextSlide)=>console.log("onBeforce",previousSlide,nextSlide)}
+        onBeforeChange={(previousSlide,nextSlide)=>{}}
         onChange={nextSlide=>{}}
         onAfterChange={nextSlide=>{}}
         style={{backgroundColor:'white' , borderRadius:"15px"}}

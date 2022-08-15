@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
 import "./Cards.scss";
-import { BsSuitHeartFill , BsSuitHeart} from "react-icons/bs";
-import Button from 'react-bootstrap/Button';
+import { BsSuitHeartFill } from "react-icons/bs";
 import {Link} from "react-router-dom"
 import Card from 'react-bootstrap/Card';
 import logo from "../../logo/logo.png"
 
-const Cards = ({thumbnail}) => {
+const Cards = ({idname}) => {
+    console.log(idname)
     const [modal,setModal] = useState(false);
     const toggleEv = () => {
         setModal(!modal)

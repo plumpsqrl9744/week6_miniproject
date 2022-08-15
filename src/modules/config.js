@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import {configureStore} from "@reduxjs/toolkit";
-// import postLoginAsync from "../modules/login";
-
-export default configureStore({
-    reducer:{   
-    }
-})
-=======
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { commentReducer } from './Comment';
 
@@ -21,4 +12,3 @@ export default configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 });
->>>>>>> origin/fake-master

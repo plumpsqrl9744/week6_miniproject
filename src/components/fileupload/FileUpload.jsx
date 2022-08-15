@@ -3,8 +3,10 @@ import "./FileUpload.scss";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useNavigate } from "react-router-dom"
+import axios from 'axios';
 
 const FileUpload = () => {
+    
     const navigate = useNavigate();
     const [posts, setPosts] = useState(
         {
@@ -14,27 +16,30 @@ const FileUpload = () => {
     );
     const onChange = (e) => {
         e.preventDefault();
-        // setTitle(e.target.value)
         setPosts({...posts,
             titles:e.target.value
         })
     }
     const onChanges = (e) => {
         e.preventDefault();
-        // setContent(e.target.value)
         setPosts({...posts,
             contents:e.target.value
         })
     }
     const handlePost = (e) => {
         e.preventDefault();
-        // setPosts({...posts,
-        //     titles:title,
-        //     contents:content
-        // })
         if (posts.contents==="" || posts.titles===""){
             alert("내용과 제목을 입력해주세요.")
         }
+        axios.post('http://localhost:8080/api/v1/todos', { // post 보내기
+            
+        })
+        .then(function (response) {
+        console.log(response.data);
+        })
+        .catch(function (error) {
+        console.log(error);
+        })
         navigate("/")
         console.log(posts)
     }
