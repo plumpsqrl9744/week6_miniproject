@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Header from '../components/header/Header';
 import CommentList from '../components/CommentList';
 import DetailBox from '../components/DetailBox';

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo&family=Titillium+Web:wght@200&display=swap');
-
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 * {
   font-family: 'Nanum Gothic', sans-serif;

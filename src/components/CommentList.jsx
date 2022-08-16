@@ -6,8 +6,6 @@ import CommentForm from './CommentForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { __getComments } from '../modules/comment';
 
-
-
 function CommentList() {
     const dispatch = useDispatch();
     const commentList = useSelector((state) => state.commentReducer)
