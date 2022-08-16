@@ -1,10 +1,18 @@
 {
-"comments" : [
+  "comments": [
     {
-        "message": "정말 귀여워요!",
-        "writer": "구장우",
-        "id": 1,
-        "postId": 1
-
+      "id": 1,
+      "writer": "",
+      "message": "",
+      "postId" : 1
     }
-]}
+  ],
+  "Users": [
+    {
+      "id": "",
+      "nickname": "",
+      "password": "",
+      "passwordconfirm" : ""
+    }
+  ]
+}
