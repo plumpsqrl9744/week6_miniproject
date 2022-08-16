@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { __deleteComment, __getComments, __updateComment } from '../modules/Comment';
+import { __deleteComment, __getComments, __updateComment } from '../modules/comment';
 import styled from 'styled-components';
 
 function CommentBox({ comment }) {
@@ -9,7 +9,17 @@ function CommentBox({ comment }) {
     const onDeleteComment = (e) => {
         e.preventDefault();
         dispatch(__deleteComment(comment.id));
+        console.log("comment id:",comment.id)
+        dispatch(__getComments());
+        // 위 코드 나중에 수정하기 (bad code)
     }
+
+    const onEditComment = (e) => {
+
+    }
+    
+
+
     return (
         <div>
         <StCommentBox>
@@ -20,14 +30,6 @@ function CommentBox({ comment }) {
         <button
         onClick = {onDeleteComment}
         >delete</button>
-        </div>
-        </StCommentBox>
-        <StCommentBox>
-        <CommentWriter>구장우</CommentWriter>
-        <CommentText>qwjehqkjwehwqkjehqkejqhekqwjehwqkejhqekqjhekqj</CommentText>
-        <div >
-        <button>edit</button>
-        <button>delete</button>
         </div>
         </StCommentBox>
         </div>
@@ -51,24 +53,22 @@ const StCommentBox = styled.div`
     margin : 10px auto;
     padding : 7px;
 
-    
-
-    
-    
-
     height : 40px;
 
     border-radius : 5px;
+
     .buttomBox {
         font-size : 15px;
         font-weight : none; 
     
     }
+
     .editButtom {
         margin-right : 10px;
         border : 0px;
         magin : 5px 5px auto; 
     }
+
     .deleteButtom {
         border : 0px;
         magin : 5px 5px auto;  
