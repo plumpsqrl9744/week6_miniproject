@@ -1,0 +1,21 @@
+.detail_page {
+    margin: 0 auto;
+
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    
+    width : 600px;
+    max-width : 1200px;
+    border : 1px solid #D8D8D8;
+
+    padding : 10px;
+    margin-top : 20px;
+}
+.post_writer_box{
+    display: flex;
+    justify-content: space-between;
+}
+.update-btn{
+    margin-right: 5px;
+}
