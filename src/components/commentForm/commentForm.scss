@@ -1,0 +1,17 @@
+.comment_form {
+    height: 50px;
+
+    margin-bottom : 30px;
+
+    .commentBox {
+        width : 450px;
+
+        border : 0px;
+    }
+}
+
+.comment_form_box {
+    display : flex;
+    align-items : center;
+    justify-content : space-around;
+}

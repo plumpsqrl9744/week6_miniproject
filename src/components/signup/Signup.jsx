@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import styled from 'styled-components';
+
 import { useDispatch } from 'react-redux';
 import { __checkUser } from '../../modules/signUP';
 import { __addUser } from '../../modules/signUP';
