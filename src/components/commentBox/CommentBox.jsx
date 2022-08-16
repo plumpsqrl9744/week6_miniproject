@@ -18,19 +18,16 @@ function CommentBox({ comment }) {
     const onEditComment = (e) => {
 
     }
-    
-
-
     return (
         <div>
             <div className='comment_box'>
                 <div className='comment_writer'>구장우</div>
                 <div className='comment_text'>{ comment.message }</div>
                 <div>
-                    <button>edit</button>
+                    <button>수정</button>
                     <button
                     onClick = {onDeleteComment}
-                    >delete</button>
+                    >삭제</button>
                 </div>
             </div>
         </div>

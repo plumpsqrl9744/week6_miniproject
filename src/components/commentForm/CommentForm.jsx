@@ -48,9 +48,7 @@ function CommentForm() {
           })
         //   validationText.current.innerText = '';
          }
-        
       }
-
     return (
         <span className='comment_form'>
             <div className='comment_form_box'>
@@ -61,14 +59,12 @@ function CommentForm() {
                 onChange={onChangeHandler} 
                 placeholder= "댓글을 입력해 주세요!"
                 />
-
-
             <button 
                 onClick = {onCreateComment}
                 type="submit" 
                 style={{color : "#A4A4A4"}}
                 >
-                add
+                추가
                 </button>
             </div>
         </span>

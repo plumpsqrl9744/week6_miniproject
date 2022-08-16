@@ -13,7 +13,7 @@ const Post = () => {
           <div>
             <Link to="/"><AiOutlineArrowLeft className="arrow-left"></AiOutlineArrowLeft></Link>
             <div className="desc">
-                Create Card !
+              Create Card !
             </div>
           </div>
           <hr></hr>

@@ -16,7 +16,6 @@ export const __getComments = createAsyncThunk("GET_COMMENTS", async () => {
   return response.data;
 });
 
-
 // ::: [Thunk, Axios] 데이터 추가하기(post)
 // :::: (post) 댓글
 export const __addComment = createAsyncThunk("ADD_COMMENT", async (newComments) => {
@@ -28,7 +27,6 @@ export const __addComment = createAsyncThunk("ADD_COMMENT", async (newComments) 
   });
   console.log("post :",respose.data)
   return respose.data;
-  
 });
 
 
