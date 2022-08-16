@@ -55,7 +55,6 @@ function Signup() {
         }
         dispatch(__checkUser(userCheck));
         console.log("유저첵",userCheck)
-
     }
 
 

@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import CommentBox from '../commentBox/CommentBox';
 import CommentForm from '../commentForm/CommentForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { __getComments } from '../../modules/comment';
 import "./commentList.scss"
-
-
 
 function CommentList() {
     const dispatch = useDispatch();

@@ -23,16 +23,16 @@ function CommentBox({ comment }) {
 
     return (
         <div>
-        <div className='comment_box'>
-        <div className='comment_writer'>구장우</div>
-        <div className='comment_text'>{ comment.message }</div>
-        <div>
-        <button>edit</button>
-        <button
-        onClick = {onDeleteComment}
-        >delete</button>
-        </div>
-        </div>
+            <div className='comment_box'>
+                <div className='comment_writer'>구장우</div>
+                <div className='comment_text'>{ comment.message }</div>
+                <div>
+                    <button>edit</button>
+                    <button
+                    onClick = {onDeleteComment}
+                    >delete</button>
+                </div>
+            </div>
         </div>
         
     );

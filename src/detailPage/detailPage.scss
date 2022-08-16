@@ -1,8 +1,6 @@
 .detail_page {
-    position : absolute;
-    left : 28%;
-
     display : flex;    
+    margin: 0 auto;
     flex-direction : column;
     justify-content : center;
     
@@ -12,4 +10,12 @@
 
     padding : 10px;
     margin-top : 20px;
+
+}
+.post_writer_box{
+    display: flex;
+    justify-content: space-between;
+}
+.update-btn{
+    margin-right: 5px;
 }
