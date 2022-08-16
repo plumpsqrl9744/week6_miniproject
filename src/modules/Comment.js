@@ -12,6 +12,7 @@ const port = '3003';
 // :::: (get) 댓글
 export const __getComments = createAsyncThunk("GET_COMMENTS", async () => {
   const response = await axios.get(`http://localhost:${port}/comments/`);
+  console.log("get :",response.data)
   return response.data;
 });
 
@@ -29,6 +30,7 @@ export const __addComment = createAsyncThunk("ADD_COMMENT", async (newComments) 
   return respose.data;
   
 });
+
 
 
 // ::: [Thunk, Axios] 데이터 삭제하기(delete)
@@ -50,14 +52,10 @@ export const __updateComment = createAsyncThunk("UPDATE_COMMENT",
       message: updateComment.message,
       postId: updateComment.postId,
       id: updateComment.id
-      
     });
-    
     return response.data;
   }
-  
 );
-
 
 // [Reducer]
 // ::: 스토어 공간에서 어떤 작업을 진행해줄지

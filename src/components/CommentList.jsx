@@ -9,6 +9,7 @@ import { __getComments } from '../modules/comment';
 function CommentList() {
     const dispatch = useDispatch();
     const commentList = useSelector((state) => state.commentReducer)
+    console.log ( "commentList",commentList)
     const postId = useParams();
 
     useEffect(() => {
@@ -19,7 +20,7 @@ function CommentList() {
         <StCommentList>
             <CommentForm/>
             {commentList.map((comment) => (
-                Number(postId.postId) === comment.postId &&
+                // Number(postId.postId) === comment.postId &&
                 <CommentBox
                 key = {comment.id}
                 comment = {comment}

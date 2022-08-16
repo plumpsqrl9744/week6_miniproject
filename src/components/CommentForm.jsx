@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { customAlphabet } from "nanoid";
+
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { __addComment } from '../modules/comment';
@@ -8,19 +8,16 @@ import styled from 'styled-components';
 
 
 function CommentForm() {
-    const nanoid = customAlphabet("01234567899abcedf", 6);
     const postId = useParams();
-    const id = nanoid();
     const  dispatch = useDispatch();
-
     const [inputs, setInputs] = useState({
         id : 0,
         writer : "",
         message : "",
-        posId : 0,
+        postId : 0,
     }) 
     
-    const { message } = inputs;
+    const { writer ,message } = inputs;
     const onChangeHandler = (e) => {
         const { value, name } = e.target;
         setInputs({
@@ -37,7 +34,6 @@ function CommentForm() {
             //   validationText.current.innerText = '성함과 5~10 글자 이상의 내용을 입력해주세요';
          } else {
           const newComment = {
-            id: id,
             postId: parseInt(postId.postId),
             writer: inputs.writer,
             message: inputs.message

@@ -20,7 +20,7 @@ function DetailPage() {
 export default DetailPage;
 const StDetailPage = styled.div`
     position : absolute;
-    left : 29%;
+    left : 28%;
 
     display : flex;    
     flex-direction : column;

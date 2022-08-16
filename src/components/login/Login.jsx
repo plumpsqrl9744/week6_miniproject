@@ -40,7 +40,6 @@ const Login = () => {
         console.log("send request !")
         return navigate("/")
     }
-        
   return (
     <div className='login'>
         <div className='login-container'>
