@@ -1,14 +1,35 @@
 import "./Header.scss";
 import logo from "../../logo/logo.png"
-import { useState } from "react";
-import Post from "../post/Post";
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import { useNavigate } from "react-router-dom"
 
 const RightBar = () =>{
+  const [name , setName] = useState("");
+  const [navigates,setNavigates] = useState(false)
   const [menuBar,setMenuBar] = useState(false);
+  const navigate = useNavigate();
+  // useEffect(()=>{ // 메인 접속시 화면 불러오기
+  //   (async () => {
+  //     try{
+  //       const {data} = await axios.get("");
+  //       setName(data.name);
+  //     } catch (e){
+  //       navigate("/")
+  //     }
+  //     })()
+  // },[])
+  const logOut = async () => { // 로그아웃
+    await axios.post("logout", {}, {withCredentials:true})
+    setNavigates(true)
+  }
+  if(navigates===true){
+    console.log("Log Out !")
+    return navigate("/login")
+  }
   const onClickEvent=()=>{
     setMenuBar(!menuBar);
   }
-
   return(
     <div className={"header-right"+ (menuBar ? " active" : "")}>
       <div className={"header-menu"+ (menuBar ? " menu-act" : " none-act")}>
@@ -17,7 +38,8 @@ const RightBar = () =>{
             <a href={`/post`}>Create Card</a>
           </li>
           <li className="items" onClick={onClickEvent}>
-            <a href={`/login`}>LogOut</a>
+            <a href="#" onClick={logOut}>LogOut</a>
+            {/* <a href={`/login`}>LogOut</a> */}
           </li>
         </ul>
       </div>

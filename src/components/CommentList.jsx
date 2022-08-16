@@ -4,9 +4,7 @@ import { useParams } from 'react-router-dom';
 import CommentBox from './CommentBox';
 import CommentForm from './CommentForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { __getComments } from '../modules/Comment';
-
-
+import { __getComments } from '../modules/comment';
 
 function CommentList() {
     const dispatch = useDispatch();

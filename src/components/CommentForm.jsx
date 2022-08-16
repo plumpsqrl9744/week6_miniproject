@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { customAlphabet } from "nanoid";
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { __addComment } from '../modules/Comment';
+import { __addComment } from '../modules/comment';
 
 import styled from 'styled-components';
 

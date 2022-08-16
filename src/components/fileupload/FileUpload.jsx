@@ -4,9 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useNavigate } from "react-router-dom"
 import axios from 'axios';
+import imageCompression from 'browser-image-compression';
 
 const FileUpload = () => {
-    
+    const [selectedImages, setSelectedImages] = useState("");
+    const [imgSelect , setImgSelect] = useState(false)
+
     const navigate = useNavigate();
     const [posts, setPosts] = useState(
         {
@@ -26,27 +29,42 @@ const FileUpload = () => {
             contents:e.target.value
         })
     }
-    const handlePost = (e) => {
+    const handlePost = async (e) => {
         e.preventDefault();
+        
         if (posts.contents==="" || posts.titles===""){
             alert("내용과 제목을 입력해주세요.")
         }
         axios.post('http://localhost:8080/api/v1/todos', { // post 보내기
-            
+            image:selectedImages,
+            content:posts.contents,
+            titles:posts.titles
         })
         .then(function (response) {
-        console.log(response.data);
+            console.log(response.data);
+            navigate("/")
         })
         .catch(function (error) {
-        console.log(error);
+            console.log(error);
         })
-        navigate("/")
         console.log(posts)
+        // const options = {
+        //     maxSizeMB:1,
+        //     maxWidthOrHeight: 500,
+        //     useWebWorker: true
+        // }
+        // try {
+        //     const compressedFile = await imageCompression(selectedImages, options);
+        //     console.log(compressedFile)
+        //     
+        // } catch (error) {
+        //     console.log(error);
+        // }  
     }
-    const [selectedImages, setSelectedImages] = useState([]);
-    const [imgSelect , setImgSelect] = useState(false)
-    const onSelectFile = (event) => {
-        const selectedFiles = event.target.files;
+    
+    const onSelectFile = async (e) => {
+        const selectedFiles = e.target.files;
+        
         const selectedFilesArray = Array.from(selectedFiles);
         setImgSelect((prev) => !prev)
         const imagesArray = selectedFilesArray.map((file) => {
@@ -56,7 +74,7 @@ const FileUpload = () => {
         // setSelectedImages((previousImages) => previousImages.concat(imagesArray));
         setSelectedImages(imagesArray)
         // FOR BUG IN CHROME
-        event.target.value = "";
+        e.target.value = "";
     };
 
     const deleteHandler = (image) => {

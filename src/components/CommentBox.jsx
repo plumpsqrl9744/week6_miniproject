@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { __deleteComment, __getComments, __updateComment } from '../modules/Comment';
+import { __deleteComment, __getComments, __updateComment } from '../modules/comment';
 import styled from 'styled-components';
 
 function CommentBox({ comment }) {
