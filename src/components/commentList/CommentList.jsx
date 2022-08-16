@@ -23,7 +23,7 @@ function CommentList() {
         <div className='comment_list'>
             <CommentForm/>
             {commentList.map((comment) => (
-                // Number(postId.postId) === comment.postId &&
+                //// Number(postId.postId) === comment.postId &&
                 <CommentBox
                 key = {comment.id}
                 comment = {comment}
