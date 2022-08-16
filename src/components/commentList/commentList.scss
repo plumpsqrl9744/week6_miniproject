@@ -1,0 +1,12 @@
+.comment_list {
+    display : flex;
+    justify-content : center;
+    flex-direction : row;
+    align-items : center;
+    flex-wrap : wrap;
+
+    background-color : white;
+    font-size : 15px;
+
+    border-radius : 3px;
+}

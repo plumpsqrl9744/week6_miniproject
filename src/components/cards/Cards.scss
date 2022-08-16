@@ -1,0 +1,44 @@
+
+.cards{
+    margin: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 90px;
+}
+.card-link{
+    text-decoration: none;
+    color: black;
+    width: 360px;
+    cursor: pointer;
+}
+.card-container{
+    min-width : 360px;
+    max-width : 359px;
+}
+.card-img{
+    margin: 0 auto;
+    max-width: 355px;
+    min-width: 355px;
+}
+.hearts{
+    display: flex;
+}
+.hearts-count{
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.card-title{
+    font-size: 20px;
+    font-weight: bold;
+    height: 45px;
+    padding: 12px;
+}
+.btn{
+    font-size: 20px;
+}
+.card-text{
+    margin: 5px auto;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -1,9 +1,10 @@
-import './App.css';
-
+import React from 'react';
+import Router from './shared/Router';
 
 function App() {
-  return 
-
+  return (
+    <Router />
+  );
 }
 
 export default App;
