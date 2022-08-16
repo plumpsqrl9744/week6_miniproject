@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { __addComment } from '../modules/comment';
+import { __addComment } from '../../modules/comment';
 
-import styled from 'styled-components';
-
+import "./commentForm.scss"
 
 function CommentForm() {
     const postId = useParams();
@@ -53,8 +52,8 @@ function CommentForm() {
       }
 
     return (
-        <StCommentForm>
-            <StCommentFormBox>
+        <span className='comment_form'>
+            <div className='comment_form_box'>
             <input className='commentBox'
                 type='text' 
                 name='message' 
@@ -71,28 +70,9 @@ function CommentForm() {
                 >
                 add
                 </button>
-            </StCommentFormBox>
-        </StCommentForm>
+            </div>
+        </span>
     );
 }
 
 export default CommentForm;
-
-const StCommentForm = styled.span`
-    height: 50px;
-
-    margin-bottom : 30px;
-
-    .commentBox {
-        width : 450px;
-
-        border : 0px;
-    }
-`
-
-const StCommentFormBox = styled.div`
-    display : flex;
-    align-items : center;
-    justify-content : space-around;
-
-`
