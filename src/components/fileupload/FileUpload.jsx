@@ -4,19 +4,23 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useNavigate } from "react-router-dom"
 import axios from 'axios';
-import imageCompression from 'browser-image-compression';
+import { useLocation } from "react-router-dom";
 
 const FileUpload = () => {
-    const [selectedImages, setSelectedImages] = useState("");
-    const [imgSelect , setImgSelect] = useState(false)
-
-    const navigate = useNavigate();
-    const [posts, setPosts] = useState(
+    const [selectedImages, setSelectedImages] = useState(""); // 이미지 띄우는 스테이트
+    const [imgSelect , setImgSelect] = useState(false) // 이미지 가져오는 스테이트
+    const {state} = useLocation(); // 게시글 수정으로 부터 가져온 값
+    const navigate = useNavigate(); // 단순 셋팅
+    const [posts, setPosts] = useState( // 게시글 작성시 input 스테이트
         {
             titles : "",
             contents:""
         }
     );
+    console.log(state)
+    if (state !== null){
+        console.log("이렇게해")
+    }
     const onChange = (e) => {
         e.preventDefault();
         setPosts({...posts,
@@ -31,11 +35,10 @@ const FileUpload = () => {
     }
     const handlePost = async (e) => {
         e.preventDefault();
-        
         if (posts.contents==="" || posts.titles===""){
             alert("내용과 제목을 입력해주세요.")
         }
-        axios.post('http://localhost:8080/api/v1/todos', { // post 보내기
+        axios.post('http://localhost:8080/api/v1/todos', { // 게시글 보내기
             image:selectedImages,
             content:posts.contents,
             titles:posts.titles
@@ -48,18 +51,6 @@ const FileUpload = () => {
             console.log(error);
         })
         console.log(posts)
-        // const options = {
-        //     maxSizeMB:1,
-        //     maxWidthOrHeight: 500,
-        //     useWebWorker: true
-        // }
-        // try {
-        //     const compressedFile = await imageCompression(selectedImages, options);
-        //     console.log(compressedFile)
-        //     
-        // } catch (error) {
-        //     console.log(error);
-        // }  
     }
     
     const onSelectFile = async (e) => {
@@ -113,6 +104,7 @@ const FileUpload = () => {
         </label>
         )
     }
+    
     return (
         <div className='fileupload'>
             <ImageUpload></ImageUpload>

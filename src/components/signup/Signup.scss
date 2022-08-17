@@ -1,13 +1,16 @@
+.signup{
+    width: 100vw;
+    height: 100vh;
+}
 .sigup_wrap {
     display: flex;
     flex-direction: column;
-
     position: absolute;
     
-    top : 40%;
-    left: 35%;
-
-    margin-top: -40px;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    // margin-top: -40px;
 }
 
 .signup_img {
@@ -38,8 +41,6 @@
 .signup_item {
     margin-bottom: 20px;
 }
-
-
 .textbox {
     margin-right: 10px;
     margin-bottom: 10px;
@@ -62,7 +63,7 @@
     height: 30px;
     display: inline-block;
     margin-left: 7px;
-
+    
     border: 0px;
     color:white;
     font-size:18px;
@@ -81,6 +82,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 
+    border-radius: 20px;
     border: 0px;
     color:white;
     font-size:18px;

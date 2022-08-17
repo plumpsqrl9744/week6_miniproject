@@ -6,8 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { __getComments } from '../../modules/comment';
 import "./commentList.scss"
 
-
-
 function CommentList() {
     const dispatch = useDispatch();
     const commentList = useSelector((state) => state.commentReducer)
@@ -19,7 +17,7 @@ function CommentList() {
       }, [dispatch]);
 
     return (
-        <div className='comment_list'>
+        <div className='comment_list'> 
             <CommentForm/>
             {commentList.map((comment) => (
                 //// Number(postId.postId) === comment.postId &&

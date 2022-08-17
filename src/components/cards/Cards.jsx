@@ -23,7 +23,7 @@ const Cards = ({idname}) => {
         <div className='cards'>
         {counts.map((count,index)=>{
             return(
-                <Link to={"/detailpage"} className='card-link' key={index}>
+                <Link to={`/detailpage/${count}`} className='card-link' key={index}>
                 <Card style={{ minHeight:"500px"}} className="card-container">
                     <Card.Title>Card Title</Card.Title>
                     <Card.Img variant="top" src={logo} className="card-img"/>

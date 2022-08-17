@@ -1,13 +1,15 @@
 import React, {useRef, useState} from 'react';
-
-import { useDispatch } from 'react-redux';
-import { __checkUser } from '../../modules/signUP';
-import { __addUser } from '../../modules/signUP';
 import "./SignUp.scss"
-
+import axios from "axios"
+import {useNavigate} from "react-router-dom";
+// import { useDispatch } from 'react-redux';
+// import { __checkUser } from '../../modules/signUP';
+// import { __addUser } from '../../modules/signUP';
 
 function Signup() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    const [navigates,setNavigates] = useState(false)
+    const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
         userId : "",
@@ -28,24 +30,29 @@ function Signup() {
         console.log({...inputs})
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        // if ( inputs.id === "" )
-        const newUser = {
+        await axios.post("",{
             userId : inputs.userId,
             nickname : inputs.nickname,
             password : inputs.password,
             passwordConfirm : inputs.passwordConfirm
-        }
-        dispatch(__addUser(newUser));
-        console.log("확인 :",newUser)
-
+        })
+        setNavigates(true)
+        // const newUser = {
+        //     userId : inputs.userId,
+        //     nickname : inputs.nickname,
+        //     password : inputs.password,
+        //     passwordConfirm : inputs.passwordConfirm
+        // }
+        // dispatch(__addUser(newUser));
+        // console.log("확인 :",newUser)
         setInputs({
             userId : "",
             nickname : "",
             password : "",
             passwordConfirm : "",
-          })
+        })
     }
 
     const doubleCheckHandler = (e) => {
@@ -53,21 +60,21 @@ function Signup() {
         const userCheck = {
             userId : inputs.userId
         }
-        dispatch(__checkUser(userCheck));
+        // dispatch(__checkUser(userCheck));
         console.log("유저첵",userCheck)
     }
-
-
-    return (<div>
+    if(navigates===true){
+        console.log("signUp Success !")
+        return navigate("/login")
+    }
+    return (
+    <div className='signup'>
         <img className='signup_img' src={"https://raw.githubusercontent.com/plumpsqrl9744/week6_miniproject/seo/src/logo/logo2.png"}></img>
         <div className='sigup_wrap'>
             <div className='project_name'>
-            
             </div>
             <div className='signup_item'>
-
                 <div className='item_title'>아이디</div>
-            
                 <input 
                 className='textbox'
                 type='text' 
@@ -125,7 +132,7 @@ function Signup() {
             </button>
 
         </div>
-        </div>
+    </div>
     );
 }
 

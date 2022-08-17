@@ -26,6 +26,9 @@ function CommentBox({ comment }) {
     const onEditComment = (e) => {
         e.preventDefault();
 
+
+    }
+
         const updateComment = {
           id: comment.id,
           writer: inputs.writer,
@@ -64,6 +67,7 @@ function CommentBox({ comment }) {
                 <div className='comment_writer'>구장우</div>
                 <div className='comment_text'>{ comment.message }</div>
                 <div>
+
                     <button
                         ref={buttonUpdate} 
                         onClick={onTogglUpdateComment} 
@@ -71,7 +75,7 @@ function CommentBox({ comment }) {
                     >edit</button>
                     <button
                     onClick = {onDeleteComment}
-                    >delete</button>
+                    >Delete</button>
                 </div>
                 <form 
                     className='updateBox hideBox' 
