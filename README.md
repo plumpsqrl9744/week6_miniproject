@@ -3,8 +3,8 @@
 - 일부 사람들이 동물을 기르시고 반려 동물을 자랑을 많이 하셨습니다. 하여 자랑을 할만한 웹 사이트가 있으면 좋다고 생각하게 되었습니다.
 
 - 팀원
-    + 서현웅(팀장) ::
-    + 구장우(팀원) :: 
+    + 서현웅(팀장)
+    + 구장우(팀원)  
     
 - 주요기능
     + 로그인 기능
@@ -24,7 +24,14 @@
 
 ![](https://velog.velcdn.com/images/sddsk/post/0c7916e6-2ad1-49ce-b59e-0dd391032516/image.png)
 
-- 게시글 작성 
+- 게시글 작성
+
+![](https://velog.velcdn.com/images/sddsk/post/793812f1-e819-4b59-80d7-a6416d0f5048/image.png)    
 
 - 게시글 화면
-![](https://velog.velcdn.com/images/sddsk/post/793812f1-e819-4b59-80d7-a6416d0f5048/image.png)
+
+![](https://velog.velcdn.com/images/sddsk/post/435658fc-79d5-46c7-8412-4e4b7c30e262/image.png)
+
+
+- 노션 링크
+https://inquisitive-marlin-89c.notion.site/SA-5-3a303579031a4852988b9194d0e1ae46

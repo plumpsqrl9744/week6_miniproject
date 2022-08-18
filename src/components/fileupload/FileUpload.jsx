@@ -4,23 +4,22 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useNavigate } from "react-router-dom"
 import axios from 'axios';
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
-const FileUpload = () => {
+const FileUpload = ({status}) => {
+    console.log(status)
     const [selectedImages, setSelectedImages] = useState(""); // 이미지 띄우는 스테이트
-    const [imgSelect , setImgSelect] = useState(false) // 이미지 가져오는 스테이트
-    const {state} = useLocation(); // 게시글 수정으로 부터 가져온 값
+    const [imageSet,setImageSet] = useState("")
+    const [imgSelect,setImgSelect] = useState(false)
+    const [storage,setStorage] = useState(status)
+    // const {state} = useLocation(); 
     const navigate = useNavigate(); // 단순 셋팅
     const [posts, setPosts] = useState( // 게시글 작성시 input 스테이트
         {
             titles : "",
-            contents:""
+            contents: ""
         }
     );
-    console.log(state)
-    if (state !== null){
-        console.log("이렇게해")
-    }
     const onChange = (e) => {
         e.preventDefault();
         setPosts({...posts,
@@ -33,29 +32,9 @@ const FileUpload = () => {
             contents:e.target.value
         })
     }
-    const handlePost = async (e) => {
-        e.preventDefault();
-        if (posts.contents==="" || posts.titles===""){
-            alert("내용과 제목을 입력해주세요.")
-        }
-        axios.post('http://localhost:8080/api/v1/todos', { // 게시글 보내기
-            image:selectedImages,
-            content:posts.contents,
-            titles:posts.titles
-        })
-        .then(function (response) {
-            console.log(response.data);
-            navigate("/")
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        console.log(posts)
-    }
-    
     const onSelectFile = async (e) => {
-        const selectedFiles = e.target.files;
-        
+        const selectedFiles = e.target.files; 
+        setImageSet(e.target.files[0])
         const selectedFilesArray = Array.from(selectedFiles);
         setImgSelect((prev) => !prev)
         const imagesArray = selectedFilesArray.map((file) => {
@@ -68,6 +47,47 @@ const FileUpload = () => {
         e.target.value = "";
     };
 
+    const handlePost = async (e) => {
+        e.preventDefault();
+        if (posts.contents==="" || posts.titles===""){
+            alert("내용과 제목을 입력해주세요.")
+        }
+        let auth = localStorage.getItem("Authorization")
+        let token = localStorage.getItem("Refresh-Token")
+        const formData = new FormData()
+        formData.append("image",imageSet)
+        formData.append("content",posts.contents)
+        formData.append("title",posts.titles)
+        if(status===null){
+            axios.post('/post', formData,{  // 게시글 보내기
+                headers:{
+                "Content-Type":"multipart/form-data",
+                "Authorization": auth,
+                "Refresh-Token": token
+            }},{withCredentials:true})
+            .then(function (response) {
+                alert("Create Content !")
+                navigate("/")
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }else{
+            axios.put(`/post/${status.id}`, formData,{  // 게시글 수정
+                headers:{
+                "Content-Type":"multipart/form-data",
+                "Authorization": auth,
+                "Refresh-Token": token
+            }},{withCredentials:true})
+            .then(function (response) {
+                alert("Update Content !")
+                navigate(`/detailpage/${status.id}`)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }
+    }
     const deleteHandler = (image) => {
         setSelectedImages(selectedImages.filter((e) => e !== image));
         URL.revokeObjectURL(image);
@@ -77,10 +97,13 @@ const FileUpload = () => {
     const ImageUpload = () => {
     return(
         <label className="img-label">
-            {imgSelect ? null 
-                : <div>
-                + Add image
-                </div>}
+            {status === null ? <div className={imageSet === "" ? "displaying" : "none"}>
+                                    + Add image
+                                </div>:
+                                <div className={imageSet === "" ? "displaying" : "none"}>
+                                    + Update image
+                                </div>
+            }
             <input
             type="file"
             name="images"
@@ -111,11 +134,11 @@ const FileUpload = () => {
             <Form className="upload-container" >
                 <Form.Group className="input-box">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control name="title" placeholder="Title" value={posts.titles} onChange={onChange}/>
+                    <Form.Control name="title" placeholder = {status===null ? "Title" : status.title} value={posts.titles} onChange={onChange}/>
                 </Form.Group>
                 <Form.Group className="input-box">
                     <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" name="content" rows={3} value={posts.contents} placeholder ="Content" onChange={onChanges}/>
+                    <Form.Control as="textarea" name="content" rows={3} value={posts.contents} placeholder = {status===null ? "Content" : status.content} onChange={onChanges}/>
                 </Form.Group>
                 <Button onClick={handlePost}>Submit</Button>
             </Form>

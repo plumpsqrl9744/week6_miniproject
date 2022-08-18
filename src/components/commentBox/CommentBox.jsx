@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { __deleteComment, __getComments, __updateComment } from '../../modules/comment';
-
+import axios from 'axios';
 import "./commentBox.scss"
 
 function CommentBox({ comment }) {
@@ -9,11 +9,26 @@ function CommentBox({ comment }) {
     const buttonUpdate = useRef();
     const updateFormWrap = useRef();
 
-    const onDeleteComment = (e) => {
+    const onDeleteComment = async (e) => {
         e.preventDefault();
-        dispatch(__deleteComment(comment.id));
-        console.log("comment id:",comment.id)
-        dispatch(__getComments());
+        try{
+          let auth = localStorage.getItem("Authorization")
+          let token = localStorage.getItem("Refresh-Token")
+          const response = await axios.delete(`/comment/${4}`,{   // 댓글 삭제                    
+              content:"라라"
+          },  
+          {headers:{
+              "Authorization": auth,
+              "Refresh-Token": token
+          }},
+          {withCredentials:true})
+          console.log("감자",response.data)
+        } catch(error){
+          console.log(error)
+        }    
+        // dispatch(__deleteComment(comment.id));
+        // console.log("comment id:",comment.id)
+        // dispatch(__getComments());
         // 위 코드 나중에 수정하기 (bad code)
     }
 
@@ -22,12 +37,18 @@ function CommentBox({ comment }) {
         message: ''
       });
     
+      const { writer, message } = inputs;
+
+      const onChangeUpdate = (event) => {
+        const { value, name } = event.target;
+        setInputs({
+          ...inputs,
+          [name] : value
+        });
+      }
 
     const onEditComment = (e) => {
         e.preventDefault();
-
-
-    }
 
         const updateComment = {
           id: comment.id,
@@ -67,34 +88,40 @@ function CommentBox({ comment }) {
                 <div className='comment_writer'>구장우</div>
                 <div className='comment_text'>{ comment.message }</div>
                 <div>
-
                     <button
+                        className='editButton'
                         ref={buttonUpdate} 
                         onClick={onTogglUpdateComment} 
                         isopen={+false}
                     >edit</button>
                     <button
-                    onClick = {onDeleteComment}
-                    >Delete</button>
+                        className='deleteButton'
+                        onClick = {onDeleteComment}
+                    >delete</button>
+                    
                 </div>
-                <form 
+            </div>
+            <form 
                     className='updateBox hideBox' 
                     action='' 
                     onSubmit={onEditComment}
                     ref={updateFormWrap}
                     togglerevise={+false}
                     >
-                    <label>Writer</label>
-                    <input type='text' name='writer' value={writer} onChange={onChangeUpdate} />
-                    <label>Comment</label>
-                    <input type='text' name='message' value={message} onChange={onChangeUpdate} />
-                    <button>Complete</button>
+                    <label></label>
+                    <input 
+                    className='update_comment_box'
+                    type='text' 
+                    name='message' 
+                    value={message} 
+                    onChange={onChangeUpdate} 
+                    placeholder= "수정할 댓글을 입력해주세요!"/>
+                    <button className='completeButton'>complete</button>
                 </form>
-            </div>
         </div>
         
-    )
-    };
+  )
+};
     
 
 export default CommentBox;

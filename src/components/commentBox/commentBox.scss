@@ -18,19 +18,23 @@
 
     .buttomBox {
         font-size : 15px;
-        font-weight : none; 
+        font-weight : bold; 
     
     }
 
-    .editButtom {
+    .editButton {
         margin-right : 10px;
         border : 0px;
         margin : 5px 5px auto; 
+        background-color: white;
+        font-weight : bold; 
     }
 
-    .deleteButtom {
+    .deleteButton {
         border : 0px;
         margin : 5px 5px auto;  
+        background-color: white;
+        font-weight : bold; 
     }
 }
 
@@ -45,4 +49,30 @@
 
 .comment_text {
     width : 250px;
+}
+
+.updateBox {
+    text-align: center;
+  }
+
+.showBox {
+    height: 70px;
+    transition: .5s;
+  }
+.hideBox {
+    height:0;
+    overflow: hidden;
+    transition: 1s;
+  }
+.update_comment_box {
+    border: 0px;
+    margin:  0px 90px;
+    margin-top: 10px;
+}
+
+.completeButton {
+    border : 0px;
+    background-color: white;
+    font-weight : bold; 
+
 }

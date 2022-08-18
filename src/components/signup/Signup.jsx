@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import "./SignUp.scss"
+import "./Signup.scss"
 import axios from "axios"
 import {useNavigate} from "react-router-dom";
 // import { useDispatch } from 'react-redux';
@@ -32,11 +32,10 @@ function Signup() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        await axios.post("",{
-            userId : inputs.userId,
+        await axios.post("/signup",{
+            memberId : inputs.userId,
             nickname : inputs.nickname,
             password : inputs.password,
-            passwordConfirm : inputs.passwordConfirm
         })
         setNavigates(true)
         // const newUser = {
@@ -64,7 +63,8 @@ function Signup() {
         console.log("유저첵",userCheck)
     }
     if(navigates===true){
-        console.log("signUp Success !")
+        console.log("SignUp Success !")
+        alert("SignUp Success !")
         return navigate("/login")
     }
     return (
@@ -83,13 +83,8 @@ function Signup() {
                 onChange={onChangeHandler}
                 placeholder = "아이디를 입력해주세요"
                 />
-                <button 
-                 className='user_check_button'
-                onClick = {doubleCheckHandler}
-                >중복확인</button>
             </div>
             <div className='signup_item'>
-
                 <div className='item_title'>닉네임</div>
                 <input 
                 className='textbox'
@@ -101,11 +96,10 @@ function Signup() {
                 />
             </div>
             <div className='signup_item'>
-
                 <div className='item_title'>비밀번호</div>
                 <input 
                 className='textbox'
-                type='text' 
+                type='password' 
                 name='password' 
                 value={password} 
                 onChange={onChangeHandler}
@@ -117,7 +111,7 @@ function Signup() {
                 <div className='item_title'>비밀번호 재확인</div>
                 <input 
                 className='textbox'
-                type='text' 
+                type='password' 
                 name='passwordConfirm' 
                 value={passwordConfirm} 
                 onChange={onChangeHandler}

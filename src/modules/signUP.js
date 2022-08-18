@@ -13,7 +13,6 @@ const port = '3003';
 export const __checkUser = createAsyncThunk("CHECK_USER", async (checkUser) => {
   const response = await axios.post(`http://localhost:${port}/users`,{
   userId : checkUser.userId,
-  
 });
 
 console.log("post :",response.data)

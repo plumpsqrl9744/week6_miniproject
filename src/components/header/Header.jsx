@@ -20,7 +20,16 @@ const RightBar = () =>{
   //     })()
   // },[])
   const logOut = async () => { // 로그아웃
-    await axios.post("logout", {}, {withCredentials:true})
+    let auth = localStorage.getItem("Authorization")
+    let token = localStorage.getItem("Refresh-Token")
+    await axios.get("logout",{
+      headers:{
+        "Authorization": auth,
+        "Refresh-Token": token
+      }
+    })
+    localStorage.removeItem("Authorization")
+    localStorage.removeItem("Refresh-Token")
     setNavigates(true)
   }
   if(navigates===true){

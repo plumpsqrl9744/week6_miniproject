@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import "./Cards.scss";
-import { BsSuitHeartFill } from "react-icons/bs";
+import { BsSuitHeartFill,BsSuitHeart } from "react-icons/bs";
 import {Link} from "react-router-dom"
 import Card from 'react-bootstrap/Card';
 import logo from "../../logo/logo.png"
@@ -29,7 +29,7 @@ const Cards = ({idname}) => {
                     <Card.Img variant="top" src={logo} className="card-img"/>
                     <Card.Body>
                         <div className='hearts'>
-                            <BsSuitHeartFill style={{fontSize:"25px" ,color:"red" ,marginTop:"-5px"}}></BsSuitHeartFill><div className='hearts-count'>25</div>
+                            <BsSuitHeartFill style={{fontSize:"25px" ,color:"red"}}></BsSuitHeartFill><div className='hearts-count'>25</div>
                         </div>
                         {/* <Button variant="primary">GO</Button> */}
                         <Card.Text>

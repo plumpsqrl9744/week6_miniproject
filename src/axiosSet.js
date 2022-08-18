@@ -8,7 +8,7 @@ axios.interceptors.response.use(resp => resp, async error =>{
         refresh = true
         const response = await axios.post("refresh",{},{withCredentials:true})
         if (response.status===200){
-            axios.defaults.headers["Authorization"] = `Bearer ${response.data['token']}`;
+            axios.defaults.headers.common["Authorization"] = `Bearer ${response.data['token']}`;
             return axios(error.config);
         }
     }

@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { __addComment } from '../../modules/comment';
-
+import axios from "axios"
 import "./commentForm.scss"
 
 function CommentForm() {
@@ -26,19 +25,38 @@ function CommentForm() {
         console.log([name], value)
     }
 
-    const onCreateComment = (event) => {
+    const onCreateComment = async (event) => {
         event.preventDefault();
-        if (inputs.message === "" && inputs.message.length < 20) {
-            alert ("내용을 5~10 글자 이내로 입력해주세요!")
+        // if (inputs.message === "" && inputs.message.length < 20) {
+        if (true) {
+            // alert ("내용을 5~10 글자 이내로 입력해주세요!")
             //   validationText.current.innerText = '성함과 5~10 글자 이상의 내용을 입력해주세요';
-         } else {
+            try{
+                let auth = localStorage.getItem("Authorization")
+                let token = localStorage.getItem("Refresh-Token")
+                const response = await axios.post(`/comment/${4}`,{   // 댓글 작성                    
+                    content:"라라"
+                },  
+                {headers:{
+                    "Authorization": auth,
+                    "Refresh-Token": token
+                }},
+                {withCredentials:true})
+                console.log("감자",response.data)
+                
+            } catch(error){
+                console.log(error)
+            }    
+        } else {
           const newComment = {
             postId: parseInt(postId.postId),
             writer: inputs.writer,
             message: inputs.message
           }
           console.log({newComment})
-          dispatch(__addComment(newComment));
+        
+        
+          //   dispatch(__addComment(newComment));
           
           setInputs({
             id : 0,

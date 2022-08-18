@@ -1,7 +1,6 @@
 
 .img-label {
     margin: 140px auto;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -10,11 +9,12 @@
     width: 100px;
     height: 100px;
     cursor: pointer;
-    div{
-        font-size: large;
-        font-weight: bold;
-        display: flex;
-        text-align: center;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    .none{
+        display: none;
     }
 }
 
