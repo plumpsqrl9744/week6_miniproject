@@ -26,47 +26,53 @@ function Signup() {
             ...inputs,
             [name] : value
         });
-        console.log([name], value)
-        console.log({...inputs})
     }
 
     const submitHandler = async (e) => {
         e.preventDefault();
         let reg1 = /^[A-Za-z0-9]{5,12}$/;
         let reg2 = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
-        if ( userId === "" || password ==="" || passwordConfirm ==="" || nickname ==="") {
-            alert("아이디와 비밀번호를 정확히 입력해주세요.")
+
+        if (!reg1.test(userId)){
+            alert("아이디는 영문 대소문자와 숫자 5~12자리로 입력해야 합니다.")
+            setInputs({
+                userId : "",
+            })
+            return
+        }
+        
+        if (!reg2.test(password)){
+            alert("비밀번호는 최소 특수문자 하나 숫자 하나 대소문자와 숫자로 8~20자리를 입력해야 합니다.")
+            setInputs({
+                password : "",
+            })
+            return
         }
         if (password !== passwordConfirm){
             alert("비밀번호가 같은지 확인해주세요.")
+            setInputs({
+                password : "",
+                passwordConfirm:""
+            })
+            return
         }
-        if (!reg1.test(userId)){
-            alert("아이디는 영문 대소문자와 숫자 5~12자리로 입력해야 합니다.")
+        if( userId === "" || password ==="" || passwordConfirm ==="" || nickname ===""){
+            alert("ㅇ")
+            return
+            
+        }else{
+            try{
+                await axios.post("/signup",{
+                    memberId : inputs.userId,
+                    nickname : inputs.nickname,
+                    password : inputs.password,
+                })
+                setNavigates(true)
+                }catch(error){
+                    alert("규격에 맞게 입력해주세요")
+                }
+            }
         }
-        if (!reg2.test(password)){
-            alert("비밀번호는 최소 특수문자 하나 숫자 하나 대소문자와 숫자로 8~20자리를 입력해야 합니다.")
-        }
-        await axios.post("/signup",{
-            memberId : inputs.userId,
-            nickname : inputs.nickname,
-            password : inputs.password,
-        })
-        setNavigates(true)
-        // const newUser = {
-        //     userId : inputs.userId,
-        //     nickname : inputs.nickname,
-        //     password : inputs.password,
-        //     passwordConfirm : inputs.passwordConfirm
-        // }
-        // dispatch(__addUser(newUser));
-        // console.log("확인 :",newUser)
-        setInputs({
-            userId : "",
-            nickname : "",
-            password : "",
-            passwordConfirm : "",
-        })
-    }
 
     const doubleCheckHandler = (e) => {
         e.preventDefault();

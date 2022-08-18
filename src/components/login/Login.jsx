@@ -40,6 +40,7 @@ const Login = () => {
             setNavigates(true)
             navigate("/")
         } catch(error){
+            alert("아이디와 비밀번호를 확인해주세요")
             console.log(error)
         }
         // axios.defaults.headers.common["Authorization"] = `Bearer ${response['token']}`;
