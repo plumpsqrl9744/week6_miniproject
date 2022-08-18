@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import "./commentBox.scss"
+import { useNavigate } from "react-router-dom";
 
 const CommentBox = ({ comment,id }) => {
+    const navigate = useNavigate();
     const buttonUpdate = useRef();
     const updateFormWrap = useRef();
     const [inputs, setInputs] = useState("");
@@ -12,7 +14,7 @@ const CommentBox = ({ comment,id }) => {
     const onChangeUpdate = (e) => {
       setInputs(e.target.value)
     }
-    const onDeleteComment = async (e) => {
+    const onDeleteComment = async (e) => { // 댓글 삭제
         e.preventDefault();
         try{
           let auth = localStorage.getItem("Authorization")
@@ -23,7 +25,7 @@ const CommentBox = ({ comment,id }) => {
                 "Refresh-Token": token
             }},
           {withCredentials:true})
-          console.log("삭제요")
+          window.location.href = `/detailpage/${id}`
         } catch(error){
           console.log(error)
         } 
@@ -41,6 +43,7 @@ const CommentBox = ({ comment,id }) => {
               "Refresh-Token": token
           }},
           {withCredentials:true})
+          window.location.href = `/detailpage/${id}`          
         } catch(error){
           console.log(error)
         } 

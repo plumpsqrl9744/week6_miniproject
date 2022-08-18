@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from "axios"
 import "./commentForm.scss"
-
+import { useNavigate } from "react-router-dom";
 function CommentForm({comment}) {
-    
+    const navigate = useNavigate();
     const postId = useParams();
     const [inputs, setInputs] = useState("") 
     const onChangeHandler = (e) => {
@@ -16,9 +16,7 @@ function CommentForm({comment}) {
         if (comment !== null){
             var commentId = comment.id
         }
-        console.log(inputs)
         // if (inputs.message === "" && inputs.message.length < 20) {
-        if (true) {
             // alert ("내용을 5~10 글자 이내로 입력해주세요!")
             try{
                 let auth = localStorage.getItem("Authorization")
@@ -30,30 +28,13 @@ function CommentForm({comment}) {
                     "Authorization": auth,
                     "Refresh-Token": token
                 }},
-                {withCredentials:true})
+                {withCredentials:true})                
+                window.location.href = `/detailpage/${commentId}`
+                setInputs("")
             } catch(error){
                 console.log(error)
             }
         }    
-        // else {
-        //   const newComment = {
-        //     postId: parseInt(postId.postId),
-        //     writer: inputs.writer,
-        //     message: inputs.message
-        //   }
-        //   console.log({newComment})
-        
-        
-        //   //   dispatch(__addComment(newComment));
-          
-        //   setInputs({
-        //     id : 0,
-        //     writer : "",
-        //     message: "",
-        //     postId : ""
-        //   })
-        //  }
-      }
     return (
         <span className='comment_form'>
             <div className='comment_form_box'>
@@ -67,7 +48,7 @@ function CommentForm({comment}) {
             <button 
                 onClick = {onCreateComment}
                 type="submit" 
-                style={{color : "#A4A4A4"}}
+                style={{color : "black"}}
                 >
                 추가
                 </button>

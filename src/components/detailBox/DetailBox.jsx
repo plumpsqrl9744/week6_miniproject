@@ -5,6 +5,7 @@ import { useNavigate ,useParams } from 'react-router-dom';
 import { BsSuitHeartFill,BsSuitHeart } from "react-icons/bs";
 
 const DetailBox = ({comment,userCheck}) => {
+    const [check,setCheck] = useState(false)
     // const dispatch = useDispatch();
     // const commentList = useSelector((state) => state.commentReducer)
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ const DetailBox = ({comment,userCheck}) => {
                 },
             },{withCredentials:true})
             console.log(response.data)
+            setCheck((prev)=>!prev)
+            navigate("/")
         } catch(error){
             console.log(error)
         }
@@ -29,6 +32,9 @@ const DetailBox = ({comment,userCheck}) => {
         e.preventDefault();
         navigate("/post",{state:comment})
     }
+    // useEffect(()=>{
+    //     
+    // },[])
     return (
         <div className='detail_box'>
             <div className='post_writer_box'> 

@@ -10,14 +10,14 @@ import axios from "axios";
 const Post = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // useEffect(()=>{
-  //   if(localStorage.getItem("Authorization") !== null){
-  //     console.log("로그인 세션 유지 중")
-  //   }else{
-  //     alert("Please Login !")
-  //     return navigate("/login")
-  //   }
-  // },[])
+  useEffect(()=>{
+    if(localStorage.getItem("Authorization") !== null){
+      console.log("로그인 세션 유지 중")
+    }else{
+      alert("Please Login !")
+      return navigate("/login")
+    }
+  },[])
   return (
     <div className="post">
       <Header></Header>

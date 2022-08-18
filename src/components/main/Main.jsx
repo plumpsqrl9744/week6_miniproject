@@ -45,7 +45,7 @@ const Paging = ({datas}) => {
     </div>
   );
 }
-const Main = () => { // 카드 페이징 get
+const Main = () => {
   const navigate = useNavigate();
   const [hello, setHello] = useState("")
 
