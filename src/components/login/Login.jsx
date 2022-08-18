@@ -18,17 +18,17 @@ const Login = () => {
     }
     const sendRequstLogin = async (e) => {
         e.preventDefault();
-        // let reg1 = /^[A-Za-z0-9]{5,12}$/;
-        // let reg2 = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
-        // if ( id === "" || psword ==="") {
-        //     alert("아이디와 비밀번호를 정확히 입력해주세요.")
-        // }
-        // if (!reg1.test(id)){
-        //     alert("아이디는 영문 대소문자와 숫자 5~12자리로 입력해야 합니다.")
-        // }
-        // if (!reg2.test(psword)){
-        //     alert("비밀번호는 최소 특수문자 하나 숫자 하나 대소문자와 숫자로 8~20자리를 입력해야 합니다.")
-        // }
+        let reg1 = /^[A-Za-z0-9]{5,12}$/;
+        let reg2 = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$/;
+        if ( id === "" || psword ==="") {
+            alert("아이디와 비밀번호를 정확히 입력해주세요.")
+        }
+        if (!reg1.test(id)){
+            alert("아이디는 영문 대소문자와 숫자 5~12자리로 입력해야 합니다.")
+        }
+        if (!reg2.test(psword)){
+            alert("비밀번호는 최소 특수문자 하나 숫자 하나 대소문자와 숫자로 8~20자리를 입력해야 합니다.")
+        }
         try{
             const response = await axios.post("login",{ // 로그인
                 id:id, 
@@ -38,10 +38,7 @@ const Login = () => {
             localStorage.setItem("Authorization",response.data.data.Authorization)
             localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
             setNavigates(true)
-            if(navigates===true){
-                console.log("send request !")
-                return navigate("/")
-            }
+            navigate("/")
         } catch(error){
             console.log(error)
         }

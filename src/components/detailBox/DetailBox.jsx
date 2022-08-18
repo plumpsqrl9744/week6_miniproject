@@ -1,7 +1,5 @@
 import React,{useEffect, useState} from 'react';
 import "./detailBox.scss";
-// import { useSelector, useDispatch } from 'react-redux';
-import { __getComments } from '../../modules/comment';
 import axios from "axios";
 import { useNavigate ,useParams } from 'react-router-dom';
 import { BsSuitHeartFill,BsSuitHeart } from "react-icons/bs";

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://15.165.203.140/api";
+axios.defaults.baseURL = process.env.REACT_APP_HOST;
 
 let refresh = false;
 axios.interceptors.response.use(resp => resp, async error =>{
