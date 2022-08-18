@@ -1,71 +1,58 @@
 import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { __addComment } from '../../modules/comment';
 import axios from "axios"
 import "./commentForm.scss"
 
-function CommentForm() {
-    const postId = useParams();
-    const  dispatch = useDispatch();
-    const [inputs, setInputs] = useState({
-        id : 0,
-        writer : "",
-        message : "",
-        postId : 0,
-    }) 
+function CommentForm({comment}) {
     
-    const { writer ,message } = inputs;
+    const postId = useParams();
+    const [inputs, setInputs] = useState("") 
     const onChangeHandler = (e) => {
-        const { value, name } = e.target;
-        setInputs({
-            ...inputs,
-            [name] : value
-        });
-        console.log([name], value)
+        setInputs(e.target.value);
     }
 
     const onCreateComment = async (event) => {
         event.preventDefault();
+        if (comment !== null){
+            var commentId = comment.id
+        }
+        console.log(inputs)
         // if (inputs.message === "" && inputs.message.length < 20) {
         if (true) {
             // alert ("내용을 5~10 글자 이내로 입력해주세요!")
-            //   validationText.current.innerText = '성함과 5~10 글자 이상의 내용을 입력해주세요';
             try{
                 let auth = localStorage.getItem("Authorization")
                 let token = localStorage.getItem("Refresh-Token")
-                const response = await axios.post(`/comment/${4}`,{   // 댓글 작성                    
-                    content:"라라"
+                await axios.post(`/comment/${commentId}`,{   // 댓글 작성                    
+                    content:inputs
                 },  
                 {headers:{
                     "Authorization": auth,
                     "Refresh-Token": token
                 }},
                 {withCredentials:true})
-                console.log("감자",response.data)
-                
             } catch(error){
                 console.log(error)
-            }    
-        } else {
-          const newComment = {
-            postId: parseInt(postId.postId),
-            writer: inputs.writer,
-            message: inputs.message
-          }
-          console.log({newComment})
+            }
+        }    
+        // else {
+        //   const newComment = {
+        //     postId: parseInt(postId.postId),
+        //     writer: inputs.writer,
+        //     message: inputs.message
+        //   }
+        //   console.log({newComment})
         
         
-          //   dispatch(__addComment(newComment));
+        //   //   dispatch(__addComment(newComment));
           
-          setInputs({
-            id : 0,
-            writer : "",
-            message: "",
-            postId : ""
-          })
-        //   validationText.current.innerText = '';
-         }
+        //   setInputs({
+        //     id : 0,
+        //     writer : "",
+        //     message: "",
+        //     postId : ""
+        //   })
+        //  }
       }
     return (
         <span className='comment_form'>
@@ -73,7 +60,7 @@ function CommentForm() {
             <input className='commentBox'
                 type='text' 
                 name='message' 
-                value={message} 
+                value={inputs} 
                 onChange={onChangeHandler} 
                 placeholder= "댓글을 입력해 주세요!"
                 />

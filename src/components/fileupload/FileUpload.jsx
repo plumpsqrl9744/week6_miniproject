@@ -97,10 +97,10 @@ const FileUpload = ({status}) => {
     const ImageUpload = () => {
     return(
         <label className="img-label">
-            {status === null ? <div className={imageSet === "" ? "displaying" : "none"}>
+            {status === null ? <div className={imgSelect ? "none" : ""}>
                                     + Add image
                                 </div>:
-                                <div className={imageSet === "" ? "displaying" : "none"}>
+                                <div className={imgSelect ? "none" : ""}>
                                     + Update image
                                 </div>
             }

@@ -47,11 +47,11 @@ const Login = () => {
         }
         // axios.defaults.headers.common["Authorization"] = `Bearer ${response['token']}`;
     }
-    // useEffect(()=>{
-    //     if(localStorage.getItem("Authorization") !== ""){
-    //         return navigate("/")
-    //     }
-    // },[])
+    useEffect(()=>{
+        if(localStorage.getItem("Authorization") !== null){
+            return navigate("/")
+        }
+    },[])
   return (
     <div className='login'>
         <div className='login-container'>
@@ -66,7 +66,7 @@ const Login = () => {
                 <label className='id-label'>비밀번호</label>
                 <input value={psword} onChange={onChange2} className='input-item' type="password" placeholder="패스워드를 입력하세요." pattern={`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,20}$`}></input>
             </div>
-                <button type='submit' onClick={sendRequstLogin} className='login-btn'>로그인</button>
+                <a href='/'><button type='submit' onClick={sendRequstLogin} className='login-btn'>로그인</button></a>
                 <a href='/signup'><button className='login-btn'>회원가입</button></a>
         </div>
     </div>

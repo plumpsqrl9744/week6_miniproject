@@ -1,66 +1,50 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { __deleteComment, __getComments, __updateComment } from '../../modules/comment';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import "./commentBox.scss"
 
-function CommentBox({ comment }) {
-    const dispatch = useDispatch();
+const CommentBox = ({ comment,id }) => {
     const buttonUpdate = useRef();
     const updateFormWrap = useRef();
-
+    const [inputs, setInputs] = useState("");
+    if(comment!==null){
+      var commentId = comment.id
+    }
+    const onChangeUpdate = (e) => {
+      setInputs(e.target.value)
+    }
     const onDeleteComment = async (e) => {
         e.preventDefault();
         try{
           let auth = localStorage.getItem("Authorization")
           let token = localStorage.getItem("Refresh-Token")
-          const response = await axios.delete(`/comment/${4}`,{   // 댓글 삭제                    
-              content:"라라"
+          const response = await axios.delete(`/comment/${commentId}`,
+            {headers:{
+                "Authorization": auth,
+                "Refresh-Token": token
+            }},
+          {withCredentials:true})
+          console.log("삭제요")
+        } catch(error){
+          console.log(error)
+        } 
+    }
+    const onEditComment = async (e) => {
+        e.preventDefault();
+        try{
+          let auth = localStorage.getItem("Authorization")
+          let token = localStorage.getItem("Refresh-Token")
+          const response = await axios.put(`/comment/${commentId}`,{   // 댓글 수정                    
+              content:inputs
           },  
           {headers:{
               "Authorization": auth,
               "Refresh-Token": token
           }},
           {withCredentials:true})
-          console.log("감자",response.data)
         } catch(error){
           console.log(error)
-        }    
-        // dispatch(__deleteComment(comment.id));
-        // console.log("comment id:",comment.id)
-        // dispatch(__getComments());
-        // 위 코드 나중에 수정하기 (bad code)
-    }
-
-    const [inputs, setInputs] = useState({
-        writer: '',
-        message: ''
-      });
-    
-      const { writer, message } = inputs;
-
-      const onChangeUpdate = (event) => {
-        const { value, name } = event.target;
-        setInputs({
-          ...inputs,
-          [name] : value
-        });
-      }
-
-    const onEditComment = (e) => {
-        e.preventDefault();
-
-        const updateComment = {
-          id: comment.id,
-          writer: inputs.writer,
-          message: inputs.message,
-          postId: comment.postId
-        }
-        dispatch(__updateComment(updateComment));
-        setInputs({
-          writer: '',
-          message: ''
-        });
+        } 
+        
         updateFormWrap.current.togglerevise = false;
         updateFormWrap.current.classList.add('hideBox');
         updateFormWrap.current.classList.remove('showBox');
@@ -81,43 +65,42 @@ function CommentBox({ comment }) {
           updateFormWrap.current.classList.remove('showBox');
         }
       }
-
     return (
         <div>
             <div className='comment_box'>
-                <div className='comment_writer'>구장우</div>
-                <div className='comment_text'>{ comment.message }</div>
+                <div className='comment_writer'>{comment.author}</div>
+                <div className='comment_text'>{comment.content}</div>
                 <div>
                     <button
                         className='editButton'
                         ref={buttonUpdate} 
                         onClick={onTogglUpdateComment} 
                         isopen={+false}
-                    >edit</button>
+                    >Edit</button>
                     <button
                         className='deleteButton'
                         onClick = {onDeleteComment}
-                    >delete</button>
+                    >Delete</button>
                     
                 </div>
             </div>
             <form 
-                    className='updateBox hideBox' 
-                    action='' 
-                    onSubmit={onEditComment}
-                    ref={updateFormWrap}
-                    togglerevise={+false}
-                    >
-                    <label></label>
-                    <input 
-                    className='update_comment_box'
-                    type='text' 
-                    name='message' 
-                    value={message} 
-                    onChange={onChangeUpdate} 
-                    placeholder= "수정할 댓글을 입력해주세요!"/>
-                    <button className='completeButton'>complete</button>
-                </form>
+              className='updateBox hideBox' 
+              action='' 
+              onSubmit={onEditComment}
+              ref={updateFormWrap}
+              togglerevise={+false}
+              >
+              <label></label>
+              <input 
+              className='update_comment_box'
+              type='text' 
+              name='message' 
+              value={inputs} 
+              onChange={onChangeUpdate} 
+              placeholder= "수정할 댓글을 입력해주세요!"/>
+              <button className='completeButton'>complete</button>
+          </form>
         </div>
         
   )

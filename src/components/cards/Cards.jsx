@@ -6,34 +6,33 @@ import {Link} from "react-router-dom"
 import Card from 'react-bootstrap/Card';
 import logo from "../../logo/logo.png"
 
-const Cards = ({idname}) => {
-    console.log(idname)
+const Cards = ({datas}) => {
+    const [counts, setCounts] = useState([])
+    if (datas !== null){
+        var data = datas.content
+        var data2 =datas
+    }
+    console.log(data2)
     const [modal,setModal] = useState(false);
     const toggleEv = () => {
         setModal(!modal)
     }
-    const [counts, setCounts] = useState([
-        1,
-        2,
-        3,
-        4,
-        5
-    ])
+    
+    console.log("확인",data)
     return (
         <div className='cards'>
-        {counts.map((count,index)=>{
+        {data === undefined || null || "" ? "" : data.map((content,index)=>{
             return(
-                <Link to={`/detailpage/${count}`} className='card-link' key={index}>
+                <Link to={`/detailpage/${content.id}`} className='card-link' key={index}>
                 <Card style={{ minHeight:"500px"}} className="card-container">
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Img variant="top" src={logo} className="card-img"/>
+                    <Card.Title>{content.title}</Card.Title>
+                    <Card.Img variant="top" src={content.imageUrl} className="card-img"/>
                     <Card.Body>
                         <div className='hearts'>
-                            <BsSuitHeartFill style={{fontSize:"25px" ,color:"red"}}></BsSuitHeartFill><div className='hearts-count'>25</div>
+                            <BsSuitHeartFill style={{fontSize:"25px" ,color:"red"}}></BsSuitHeartFill>
                         </div>
-                        {/* <Button variant="primary">GO</Button> */}
                         <Card.Text>
-                        {count}
+                        {content.content}
                         </Card.Text>
                     </Card.Body>
                 </Card>
